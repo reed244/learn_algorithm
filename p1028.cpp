@@ -2,20 +2,19 @@
 using namespace std;
 
 int ans;
-
-void dfs(int n){
-    if(n/2==0)return;
-
-    for(int i=n/2;i>=1;i--){
-        ans++;
-        dfs(i);
-    }
-}
+int f[1001];
 
 int main(){
     int n;
     cin>>n;
-    dfs(n);
-    cout<<ans+1;
+    
+    for(int i=1;i<=n;i++){
+        for(int j=i/2;j>=1;j--){
+            f[i]+=f[j];
+        }
+        f[i]++;
+    }
+
+    cout<<f[n];
     return 0;
 }
